@@ -1,0 +1,164 @@
+﻿%
+% 公立はこだて未来大学卒業研究中間報告書[情報システム/高度ICTコース]スタイルファイル
+%
+%          ファイル名："funinfosys.sty"
+%
+\typeout{*** FUN Graduation Study Midterm Report Style ***}
+
+\columnsep 0.38in \columnseprule 0pt
+\setlength{\headheight}{2cm}
+\renewcommand{\rmdefault}{ptm}
+\renewcommand{\sfdefault}{qhv}
+
+
+\def\course#1{\gdef\@course{#1}}
+% ヘッダあり，フッタなし
+\def\@oddhead{
+	\begin{minipage}{\textwidth}
+		{
+			{\shortstack[l]{FUN Graduation Study\\ Midterm  Report}} \hfill{\small \@course}
+
+			\vspace{-0.25\baselineskip} \hrulefill
+		}
+	\end{minipage}
+}
+\def\@evenhead{\@oddhead}
+\def\@oddfoot{}
+\def\@evenfoot{}
+
+% 表題形式指定
+\def\maketitle{
+	\par
+	\begingroup
+		\def\thefootnote{\fnsymbol{footnote}}
+		\def\@makefnmark{\hbox{$^{\@thefnmark}$\hss}}
+		\twocolumn[\@maketitle]
+		\@thanks
+	\endgroup
+}
+
+% 表題の配置
+\def\@maketitle{
+	\vbox{
+		\centering
+		\rmfamily
+		\Large{\textbf{\@title}}
+
+		\medskip
+
+		\large{\@author}
+
+		\vspace{4mm}
+		\Large{\textbf{\@etitle}}
+
+		\medskip
+
+		\large{\@eauthor}
+
+		\vspace{7mm}
+		\begin{minipage}{0.9\textwidth}
+			\noindent\baselineskip 12pt
+			\@abstract
+
+			\vspace{\baselineskip}
+			\@keywords
+		\end{minipage}
+
+		\vspace{5mm}
+		\begin{minipage}{0.9\textwidth}
+			\noindent\baselineskip 12pt
+			\@eabstract
+
+			\vspace{\baselineskip}
+			\@ekeywords
+		\end{minipage}
+
+		\bigskip\bigskip
+	}
+}
+\def\copyrightspace{\footnotetext[1]{\mbox{}\vrule height 0.80in width 0pt}}
+% 図表の量の指定
+\setcounter{topnumber}{10}
+\def\topfraction{.99}
+\setcounter{bottomnumber}{10}
+\def\bottomfraction{.99}
+\setcounter{totalnumber}{20}
+\def\textfraction{.0}
+\setcounter{dbltopnumber}{4}
+\def\dbltopfraction{.99}
+\floatsep 12pt plus 12pt minus 12pt
+\textfloatsep 20pt plus 12pt minus 12pt
+\intextsep 12pt plus 12pt minus 12pt
+\def\fnum@figure{Fig. \thefigure}
+\def\fnum@table{Table \thetable}
+\long\def\@makecaption#1#2{
+ \vskip 10pt
+ \setbox\@tempboxa\hbox{#1\ \ #2}
+ \ifdim \wd\@tempboxa >\hsize \unhbox\@tempboxa\par \else \hbox
+to\hsize{\hfil\box\@tempboxa\hfil}
+ \fi}
+
+\def\etitle#1{\gdef\@etitle{#1}}
+\def\eauthor#1{\gdef\@eauthor{#1}}
+\def\abstract#1{\gdef\@abstract{{\bfseries 概要 :~}#1}}
+\def\eabstract#1{\gdef\@eabstract{{\bfseries Abstract:~}#1}}
+\def\keywords#1{\gdef\@keywords{{\bfseries キーワード :~}#1}}
+\def\ekeywords#1{\gdef\@ekeywords{{\bfseries Keywords:~}#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 章の見出し
+% 第4,5引き数はそれぞれ見出しの上下の空白の量である．
+% \@startsectionの第4引数を負にすると見出しの後インデントしない．
+% 　　　〃　　　　第5引数を負にすると見出しの後改行しない．
+% 　　　〃　　　　第6引数は見出しフォントの指定
+\def\section{
+	\@startsection{section}{1}{0pt}
+	{1.25ex plus 1ex minus 0.2ex}{1.0ex plus 0.2ex}{\reset@font\sffamily\bfseries\Large}
+}
+\def\subsection{
+	\@startsection{subsection}{2}{0pt}
+	{1.25ex plus 1ex minus 0.2ex}{1.0ex plus 0.2ex}{\reset@font\sffamily\bfseries\large}
+}
+\def\subsubsection{
+	\@startsection{subsubsection}{3}{0pt}
+	{1.25ex plus 1ex minus 0.2ex}{1.0ex plus 0.2ex}{\reset@font\sffamily\bfseries\normalsize}
+}
+\def\paragraph{
+	\@startsection{paragraph}{4}{0pt}
+	{1.25ex plus 1ex minus 0.2ex}{-1em}{\reset@font\sffamily\bfseries\normalsize}
+}
+\def\subparagraph{
+	\@startsection{subparagraph}{5}{\parindent}
+	{1.25ex plus 1ex minus 0.2ex}{-1em}{\reset@font\sffamily\bfseries\normalsize}
+}
+
+% リスト環境のパラメータ
+\leftmargini 18pt
+\leftmarginii 16pt \leftmarginiii 13pt \leftmarginiv 10pt \leftmarginv 10pt
+\leftmarginvi 10pt
+\leftmargin\leftmargini
+\labelsep 5pt
+\labelwidth\leftmargini\advance\labelwidth-\labelsep
+\def\@listI{\leftmargin=\leftmargini
+ \topsep=0pt \parsep=0pt \itemsep=0pt \parsep=0pt \itemindent 0pt \relax}
+\def\@listii{\leftmargin=\leftmarginii
+ \labelwidth=\leftmarginii
+ \advance\labelwidth by -\labelsep
+ \topsep=0pt \parsep=0pt \itemsep=0pt \parsep=0pt \itemindent 0pt \relax}
+\let\@listi\@listI \@listi
+% 参考文献
+%\def\thebibliography#1{\section*{参考文献}
+%  \global\def\@listi{\leftmargin\leftmargini
+%               \labelwidth\leftmargini \advance\labelwidth-\labelsep
+%               \topsep 1pt plus 2pt minus 1pt
+%               \parsep 0.25ex plus 1pt \itemsep 0.25ex plus 1pt}
+%  \list {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+%    \advance\leftmargin\labelsep\usecounter{enumi}}
+%    \def\newblock{\hskip .11em plus .33em minus -.07em}
+%    \sloppy
+%    \sfcode`\.=1000\relax}
+%
+%
+% EOF
+
