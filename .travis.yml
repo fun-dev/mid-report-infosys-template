@@ -12,6 +12,8 @@ before_install:
   - sudo apt-get update
   - sudo apt-get -y install docker-ce
 
+before_script: sed -i -e 's/、/，/g' -e 's/。/．/g' main.tex
+
 script: docker run --rm -v $TRAVIS_BUILD_DIR:/latex/ extendwings/docker-platex main.tex
 
 deploy:
